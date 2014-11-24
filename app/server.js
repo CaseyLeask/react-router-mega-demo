@@ -7,16 +7,19 @@ var Router = require('react-router');
 var routes = require('./routes.js');
 var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
 var mainJS = fs.readFileSync(__dirname+'/../public/js/main.js');
+var mainCSS = fs.readFileSync(__dirname+'/../public/js/style.css');
 
 require('mach').serve(function (req, res) {
   switch (req.path) {
     case '/js/main.js':
       return mainJS;
+    case '/js/style.css':
+      return mainCSS;
     case '/favicon.ico':
       return 'haha';
     default:
-      if (req.path.match(/^\/styles.css/))
-        return fs.readFileSync(__dirname+'/assets/styles.css');
+      // if (req.path.match(/^\/styles.css/))
+      //   return fs.readFileSync(__dirname+'/assets/styles.css');
       return renderApp(req.path).then(null, function(redirect) {
         res.redirect(redirect.to);
       });

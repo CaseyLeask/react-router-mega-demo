@@ -1,4 +1,5 @@
 require('./ENV');
+require('./assets/styles.css');
 var React = require('react');
 var routes = require('./routes');
 var div = document.getElementById('app');
