@@ -9,11 +9,9 @@ var Link = Router.Link;
 var RouteHandler = Router.RouteHandler;
 
 var Root = module.exports = React.createClass({
-
   render: function() {
     return (
-      <RouteHandler/>
+      <RouteHandler />
     );
   }
-
 });

@@ -19,8 +19,12 @@ require('mach').serve(function (req, res) {
     default:
       // if (req.path.match(/^\/styles.css/))
       //   return fs.readFileSync(__dirname+'/assets/styles.css');
-      return serverRender(req.path).then(null, function(redirect) {
-        res.redirect(redirect.to);
+      return serverRender(req.path).catch(function(redirect) {
+        if (redirect && redirect.to) {
+          serverRender.redirect(redirect.to);
+        } else {
+          console.log("Error thrown for url: " + req.path + " " + redirect.toString());
+        }
       });
   }
 }, process.env.PORT || 5000);
