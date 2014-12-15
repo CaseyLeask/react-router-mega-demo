@@ -1,10 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react');
-var Router = require('react-router');
-var Route = Router.Route;
-var Link = Router.Link;
-var RouteHandler = Router.RouteHandler;
+var Route = require('react-router').Route;
 
 module.exports = (
   <Route name="root" path="/" handler={require('./handlers/Root')}>

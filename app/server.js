@@ -3,17 +3,15 @@ require('./ENV');
 
 var fs = require('fs');
 var Router = require('react-router');
-var routes = require('./routes.js');
-var mainJS = fs.readFileSync(__dirname+'/../public/js/main.js');
-var mainCSS = fs.readFileSync(__dirname+'/../public/js/style.css');
+
 var serverRender = require('./server-render');
 
 require('mach').serve(function (req, res) {
   switch (req.path) {
     case '/js/main.js':
-      return mainJS;
+      return fs.readFileSync(__dirname+'/../public/js/main.js');
     case '/js/style.css':
-      return mainCSS;
+      return fs.readFileSync(__dirname+'/../public/js/style.css');
     case '/favicon.ico':
       return 'haha';
     default:
