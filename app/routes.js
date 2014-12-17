@@ -8,7 +8,7 @@ var Redirect = Router.Redirect;
 
 module.exports = (
   <Route handler={require('./handlers/Layout')}>
-    <Redirect from="foo" to="bar" />
+    <Redirect from="foo" to="/bar/3" />
     <Route name="bar" path="bar/:id" handler={require('./handlers/Bar')} />
     <DefaultRoute name="home" handler={require('./handlers/Home')} />
   </Route>

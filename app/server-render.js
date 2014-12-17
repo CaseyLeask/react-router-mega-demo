@@ -12,7 +12,15 @@ function renderApp(path) {
   var indexHTML = fs.readFileSync(__dirname+'/index.html').toString();
 
   return new Promise(function(resolve, reject) {
-    Router.run(routes, path, function (Handler, state) {
+    var router = Router.create({
+      routes: routes,
+      location: path,
+      onAbort: function defaultAbortHandler(abortReason, location) {
+        reject(abortReason);
+      }
+    });
+
+    router.run(function (Handler, state) {
       var html = React.renderToString(<Handler />);
       resolve(indexHTML.replace(htmlRegex, html));
     });
@@ -20,3 +28,4 @@ function renderApp(path) {
 }
 
 module.exports = renderApp;
+
